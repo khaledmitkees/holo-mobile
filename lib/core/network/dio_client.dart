@@ -43,7 +43,7 @@ class DioClient implements HttpClient {
   }
 
   @override
-  Future<Map<String, dynamic>> get(
+  Future<T> get<T>(
     String path, {
     Map<String, dynamic>? queryParameters,
     Map<String, String>? headers,
@@ -54,14 +54,14 @@ class DioClient implements HttpClient {
         queryParameters: queryParameters,
         options: Options(headers: headers),
       );
-      return _handleResponse(response);
+      return _handleResponse<T>(response);
     } catch (e) {
       throw _handleError(e);
     }
   }
 
   @override
-  Future<Map<String, dynamic>> post(
+  Future<T> post<T>(
     String path, {
     dynamic data,
     Map<String, dynamic>? queryParameters,
@@ -74,14 +74,14 @@ class DioClient implements HttpClient {
         queryParameters: queryParameters,
         options: Options(headers: headers),
       );
-      return _handleResponse(response);
+      return _handleResponse<T>(response);
     } catch (e) {
       throw _handleError(e);
     }
   }
 
   @override
-  Future<Map<String, dynamic>> put(
+  Future<T> put<T>(
     String path, {
     dynamic data,
     Map<String, dynamic>? queryParameters,
@@ -94,14 +94,14 @@ class DioClient implements HttpClient {
         queryParameters: queryParameters,
         options: Options(headers: headers),
       );
-      return _handleResponse(response);
+      return _handleResponse<T>(response);
     } catch (e) {
       throw _handleError(e);
     }
   }
 
   @override
-  Future<Map<String, dynamic>> delete(
+  Future<T> delete<T>(
     String path, {
     Map<String, dynamic>? queryParameters,
     Map<String, String>? headers,
@@ -112,14 +112,14 @@ class DioClient implements HttpClient {
         queryParameters: queryParameters,
         options: Options(headers: headers),
       );
-      return _handleResponse(response);
+      return _handleResponse<T>(response);
     } catch (e) {
       throw _handleError(e);
     }
   }
 
   @override
-  Future<Map<String, dynamic>> patch(
+  Future<T> patch<T>(
     String path, {
     dynamic data,
     Map<String, dynamic>? queryParameters,
@@ -132,19 +132,21 @@ class DioClient implements HttpClient {
         queryParameters: queryParameters,
         options: Options(headers: headers),
       );
-      return _handleResponse(response);
+      return _handleResponse<T>(response);
     } catch (e) {
       throw _handleError(e);
     }
   }
 
-  Map<String, dynamic> _handleResponse(Response response) {
-    if (response.statusCode! >= 200 && response.statusCode! < 300) {
-      return response.data as Map<String, dynamic>;
+  T _handleResponse<T>(Response response) {
+    if (response.statusCode != null &&
+        response.statusCode! >= 200 &&
+        response.statusCode! < 300) {
+      return response.data as T;
     } else {
-      throw ServerException(
-        message: 'Server error: ${response.statusMessage}',
-        statusCode: response.statusCode!,
+      throw NetworkException(
+        message: 'Request failed with status: ${response.statusCode}',
+        statusCode: response.statusCode,
       );
     }
   }
