@@ -40,9 +40,9 @@ class MockProductsRepository extends _i1.Mock
   }
 
   @override
-  _i4.Future<List<_i2.Product>> getAllProducts() =>
+  _i4.Future<List<_i2.Product>> getProducts() =>
       (super.noSuchMethod(
-            Invocation.method(#getAllProducts, []),
+            Invocation.method(#getProducts, []),
             returnValue: _i4.Future<List<_i2.Product>>.value(<_i2.Product>[]),
           )
           as _i4.Future<List<_i2.Product>>);

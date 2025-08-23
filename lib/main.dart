@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'core/di/service_locator.dart';
+import 'features/products/presentation/providers/products_list_provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -18,24 +19,9 @@ class MyApp extends StatelessWidget {
       title: 'Holo Mobile',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.black),
+        useMaterial3: true,
       ),
-      home: const MyHomePage(),
-    );
-  }
-}
-
-class MyHomePage extends StatelessWidget {
-  const MyHomePage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: Text(
-          'Holo Mobile',
-          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-        ),
-      ),
+      home: const ProductsListProvider(),
     );
   }
 }

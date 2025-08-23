@@ -3,10 +3,12 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i3;
+import 'dart:async' as _i2;
 
-import 'package:holo_mobile/core/network/http_client.dart' as _i2;
+import 'package:holo_mobile/core/logging/logger_interface.dart' as _i5;
+import 'package:holo_mobile/core/network/http_client.dart' as _i3;
 import 'package:mockito/mockito.dart' as _i1;
+import 'package:mockito/src/dummies.dart' as _i4;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -22,16 +24,21 @@ import 'package:mockito/mockito.dart' as _i1;
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
 
+class _FakeFuture_0<T1> extends _i1.SmartFake implements _i2.Future<T1> {
+  _FakeFuture_0(Object parent, Invocation parentInvocation)
+    : super(parent, parentInvocation);
+}
+
 /// A class which mocks [HttpClient].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockHttpClient extends _i1.Mock implements _i2.HttpClient {
+class MockHttpClient extends _i1.Mock implements _i3.HttpClient {
   MockHttpClient() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i3.Future<Map<String, dynamic>> get(
+  _i2.Future<T> get<T>(
     String? path, {
     Map<String, dynamic>? queryParameters,
     Map<String, String>? headers,
@@ -42,14 +49,31 @@ class MockHttpClient extends _i1.Mock implements _i2.HttpClient {
               [path],
               {#queryParameters: queryParameters, #headers: headers},
             ),
-            returnValue: _i3.Future<Map<String, dynamic>>.value(
-              <String, dynamic>{},
-            ),
+            returnValue:
+                _i4.ifNotNull(
+                  _i4.dummyValueOrNull<T>(
+                    this,
+                    Invocation.method(
+                      #get,
+                      [path],
+                      {#queryParameters: queryParameters, #headers: headers},
+                    ),
+                  ),
+                  (T v) => _i2.Future<T>.value(v),
+                ) ??
+                _FakeFuture_0<T>(
+                  this,
+                  Invocation.method(
+                    #get,
+                    [path],
+                    {#queryParameters: queryParameters, #headers: headers},
+                  ),
+                ),
           )
-          as _i3.Future<Map<String, dynamic>>);
+          as _i2.Future<T>);
 
   @override
-  _i3.Future<Map<String, dynamic>> post(
+  _i2.Future<T> post<T>(
     String? path, {
     dynamic data,
     Map<String, dynamic>? queryParameters,
@@ -65,14 +89,39 @@ class MockHttpClient extends _i1.Mock implements _i2.HttpClient {
                 #headers: headers,
               },
             ),
-            returnValue: _i3.Future<Map<String, dynamic>>.value(
-              <String, dynamic>{},
-            ),
+            returnValue:
+                _i4.ifNotNull(
+                  _i4.dummyValueOrNull<T>(
+                    this,
+                    Invocation.method(
+                      #post,
+                      [path],
+                      {
+                        #data: data,
+                        #queryParameters: queryParameters,
+                        #headers: headers,
+                      },
+                    ),
+                  ),
+                  (T v) => _i2.Future<T>.value(v),
+                ) ??
+                _FakeFuture_0<T>(
+                  this,
+                  Invocation.method(
+                    #post,
+                    [path],
+                    {
+                      #data: data,
+                      #queryParameters: queryParameters,
+                      #headers: headers,
+                    },
+                  ),
+                ),
           )
-          as _i3.Future<Map<String, dynamic>>);
+          as _i2.Future<T>);
 
   @override
-  _i3.Future<Map<String, dynamic>> put(
+  _i2.Future<T> put<T>(
     String? path, {
     dynamic data,
     Map<String, dynamic>? queryParameters,
@@ -88,14 +137,39 @@ class MockHttpClient extends _i1.Mock implements _i2.HttpClient {
                 #headers: headers,
               },
             ),
-            returnValue: _i3.Future<Map<String, dynamic>>.value(
-              <String, dynamic>{},
-            ),
+            returnValue:
+                _i4.ifNotNull(
+                  _i4.dummyValueOrNull<T>(
+                    this,
+                    Invocation.method(
+                      #put,
+                      [path],
+                      {
+                        #data: data,
+                        #queryParameters: queryParameters,
+                        #headers: headers,
+                      },
+                    ),
+                  ),
+                  (T v) => _i2.Future<T>.value(v),
+                ) ??
+                _FakeFuture_0<T>(
+                  this,
+                  Invocation.method(
+                    #put,
+                    [path],
+                    {
+                      #data: data,
+                      #queryParameters: queryParameters,
+                      #headers: headers,
+                    },
+                  ),
+                ),
           )
-          as _i3.Future<Map<String, dynamic>>);
+          as _i2.Future<T>);
 
   @override
-  _i3.Future<Map<String, dynamic>> delete(
+  _i2.Future<T> delete<T>(
     String? path, {
     Map<String, dynamic>? queryParameters,
     Map<String, String>? headers,
@@ -106,14 +180,31 @@ class MockHttpClient extends _i1.Mock implements _i2.HttpClient {
               [path],
               {#queryParameters: queryParameters, #headers: headers},
             ),
-            returnValue: _i3.Future<Map<String, dynamic>>.value(
-              <String, dynamic>{},
-            ),
+            returnValue:
+                _i4.ifNotNull(
+                  _i4.dummyValueOrNull<T>(
+                    this,
+                    Invocation.method(
+                      #delete,
+                      [path],
+                      {#queryParameters: queryParameters, #headers: headers},
+                    ),
+                  ),
+                  (T v) => _i2.Future<T>.value(v),
+                ) ??
+                _FakeFuture_0<T>(
+                  this,
+                  Invocation.method(
+                    #delete,
+                    [path],
+                    {#queryParameters: queryParameters, #headers: headers},
+                  ),
+                ),
           )
-          as _i3.Future<Map<String, dynamic>>);
+          as _i2.Future<T>);
 
   @override
-  _i3.Future<Map<String, dynamic>> patch(
+  _i2.Future<T> patch<T>(
     String? path, {
     dynamic data,
     Map<String, dynamic>? queryParameters,
@@ -129,9 +220,84 @@ class MockHttpClient extends _i1.Mock implements _i2.HttpClient {
                 #headers: headers,
               },
             ),
-            returnValue: _i3.Future<Map<String, dynamic>>.value(
-              <String, dynamic>{},
-            ),
+            returnValue:
+                _i4.ifNotNull(
+                  _i4.dummyValueOrNull<T>(
+                    this,
+                    Invocation.method(
+                      #patch,
+                      [path],
+                      {
+                        #data: data,
+                        #queryParameters: queryParameters,
+                        #headers: headers,
+                      },
+                    ),
+                  ),
+                  (T v) => _i2.Future<T>.value(v),
+                ) ??
+                _FakeFuture_0<T>(
+                  this,
+                  Invocation.method(
+                    #patch,
+                    [path],
+                    {
+                      #data: data,
+                      #queryParameters: queryParameters,
+                      #headers: headers,
+                    },
+                  ),
+                ),
           )
-          as _i3.Future<Map<String, dynamic>>);
+          as _i2.Future<T>);
+}
+
+/// A class which mocks [LoggerInterface].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockLoggerInterface extends _i1.Mock implements _i5.LoggerInterface {
+  MockLoggerInterface() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  void debug(String? message, [dynamic error, StackTrace? stackTrace]) =>
+      super.noSuchMethod(
+        Invocation.method(#debug, [message, error, stackTrace]),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void info(String? message, [dynamic error, StackTrace? stackTrace]) =>
+      super.noSuchMethod(
+        Invocation.method(#info, [message, error, stackTrace]),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void warning(String? message, [dynamic error, StackTrace? stackTrace]) =>
+      super.noSuchMethod(
+        Invocation.method(#warning, [message, error, stackTrace]),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void error(String? message, [dynamic error, StackTrace? stackTrace]) =>
+      super.noSuchMethod(
+        Invocation.method(#error, [message, error, stackTrace]),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void fatal(String? message, [dynamic error, StackTrace? stackTrace]) =>
+      super.noSuchMethod(
+        Invocation.method(#fatal, [message, error, stackTrace]),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void network(String? message) => super.noSuchMethod(
+    Invocation.method(#network, [message]),
+    returnValueForMissingStub: null,
+  );
 }

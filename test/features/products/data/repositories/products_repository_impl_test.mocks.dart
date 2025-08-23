@@ -5,6 +5,7 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:async' as _i4;
 
+import 'package:holo_mobile/core/logging/logger_interface.dart' as _i5;
 import 'package:holo_mobile/features/products/data/datasources/products_remote_data_source.dart'
     as _i3;
 import 'package:holo_mobile/features/products/data/models/product_model.dart'
@@ -40,9 +41,9 @@ class MockProductsRemoteDataSource extends _i1.Mock
   }
 
   @override
-  _i4.Future<List<_i2.ProductModel>> getAllProducts() =>
+  _i4.Future<List<_i2.ProductModel>> getProducts() =>
       (super.noSuchMethod(
-            Invocation.method(#getAllProducts, []),
+            Invocation.method(#getProducts, []),
             returnValue: _i4.Future<List<_i2.ProductModel>>.value(
               <_i2.ProductModel>[],
             ),
@@ -58,4 +59,54 @@ class MockProductsRemoteDataSource extends _i1.Mock
             ),
           )
           as _i4.Future<_i2.ProductModel>);
+}
+
+/// A class which mocks [LoggerInterface].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockLoggerInterface extends _i1.Mock implements _i5.LoggerInterface {
+  MockLoggerInterface() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  void debug(String? message, [dynamic error, StackTrace? stackTrace]) =>
+      super.noSuchMethod(
+        Invocation.method(#debug, [message, error, stackTrace]),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void info(String? message, [dynamic error, StackTrace? stackTrace]) =>
+      super.noSuchMethod(
+        Invocation.method(#info, [message, error, stackTrace]),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void warning(String? message, [dynamic error, StackTrace? stackTrace]) =>
+      super.noSuchMethod(
+        Invocation.method(#warning, [message, error, stackTrace]),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void error(String? message, [dynamic error, StackTrace? stackTrace]) =>
+      super.noSuchMethod(
+        Invocation.method(#error, [message, error, stackTrace]),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void fatal(String? message, [dynamic error, StackTrace? stackTrace]) =>
+      super.noSuchMethod(
+        Invocation.method(#fatal, [message, error, stackTrace]),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void network(String? message) => super.noSuchMethod(
+    Invocation.method(#network, [message]),
+    returnValueForMissingStub: null,
+  );
 }

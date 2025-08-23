@@ -38,14 +38,14 @@ void main() {
           image: 'test_image_2.jpg',
         ),
       ];
-      when(mockRepository.getAllProducts()).thenAnswer((_) async => tProducts);
+      when(mockRepository.getProducts()).thenAnswer((_) async => tProducts);
 
       // act
       final result = await usecase();
 
       // assert
       expect(result, equals(tProducts));
-      verify(mockRepository.getAllProducts());
+      verify(mockRepository.getProducts());
       verifyNoMoreInteractions(mockRepository);
     });
   });

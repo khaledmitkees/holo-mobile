@@ -2,6 +2,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:mockito/annotations.dart';
 import 'package:holo_mobile/core/network/network_exceptions.dart';
+import 'package:holo_mobile/core/logging/logger_interface.dart';
 import 'package:holo_mobile/features/products/data/datasources/products_remote_data_source.dart';
 import 'package:holo_mobile/features/products/data/repositories/products_repository_impl.dart';
 import 'package:holo_mobile/features/products/data/models/product_model.dart';
@@ -9,15 +10,20 @@ import 'package:holo_mobile/features/products/domain/entities/product.dart';
 
 import 'products_repository_impl_test.mocks.dart';
 
-@GenerateMocks([ProductsRemoteDataSource])
+@GenerateMocks([ProductsRemoteDataSource, LoggerInterface])
 void main() {
   group('ProductsRepositoryImpl', () {
     late MockProductsRemoteDataSource mockRemoteDataSource;
+    late MockLoggerInterface mockLogger;
     late ProductsRepositoryImpl repository;
 
     setUp(() {
       mockRemoteDataSource = MockProductsRemoteDataSource();
-      repository = ProductsRepositoryImpl(remoteDataSource: mockRemoteDataSource);
+      mockLogger = MockLoggerInterface();
+      repository = ProductsRepositoryImpl(
+        remoteDataSource: mockRemoteDataSource,
+        logger: mockLogger,
+      );
     });
 
     final tProductModel = ProductModel.fromJson({
@@ -32,43 +38,43 @@ void main() {
 
     final tProductsList = [tProductModel];
 
-    group('getAllProducts', () {
+    group('getProducts', () {
       test('should return products when remote data source call is successful', () async {
         // arrange
-        when(mockRemoteDataSource.getAllProducts())
+        when(mockRemoteDataSource.getProducts())
             .thenAnswer((_) async => tProductsList);
 
         // act
-        final result = await repository.getAllProducts();
+        final result = await repository.getProducts();
 
         // assert
         expect(result, isA<List<Product>>());
         expect(result.length, equals(1));
         expect(result[0].id, equals(1));
         expect(result[0].title, equals('Test Product'));
-        verify(mockRemoteDataSource.getAllProducts());
+        verify(mockRemoteDataSource.getProducts());
       });
 
       test('should throw NetworkException when remote data source throws NetworkException', () async {
         // arrange
-        when(mockRemoteDataSource.getAllProducts())
+        when(mockRemoteDataSource.getProducts())
             .thenThrow(const NetworkException(message: 'Network error'));
 
         // act & assert
         expect(
-          () => repository.getAllProducts(),
+          () => repository.getProducts(),
           throwsA(isA<NetworkException>()),
         );
       });
 
       test('should throw NetworkException when remote data source throws other exception', () async {
         // arrange
-        when(mockRemoteDataSource.getAllProducts())
+        when(mockRemoteDataSource.getProducts())
             .thenThrow(Exception('Some error'));
 
         // act & assert
         expect(
-          () => repository.getAllProducts(),
+          () => repository.getProducts(),
           throwsA(isA<NetworkException>()),
         );
       });

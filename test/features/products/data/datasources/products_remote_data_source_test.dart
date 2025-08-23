@@ -3,20 +3,26 @@ import 'package:mockito/mockito.dart';
 import 'package:mockito/annotations.dart';
 import 'package:holo_mobile/core/network/http_client.dart';
 import 'package:holo_mobile/core/network/network_exceptions.dart';
+import 'package:holo_mobile/core/logging/logger_interface.dart';
 import 'package:holo_mobile/features/products/data/datasources/products_remote_data_source.dart';
 import 'package:holo_mobile/features/products/data/models/product_model.dart';
 
 import 'products_remote_data_source_test.mocks.dart';
 
-@GenerateMocks([HttpClient])
+@GenerateMocks([HttpClient, LoggerInterface])
 void main() {
   group('ProductsRemoteDataSource', () {
     late MockHttpClient mockHttpClient;
+    late MockLoggerInterface mockLogger;
     late ProductsRemoteDataSourceImpl dataSource;
 
     setUp(() {
       mockHttpClient = MockHttpClient();
-      dataSource = ProductsRemoteDataSourceImpl(httpClient: mockHttpClient);
+      mockLogger = MockLoggerInterface();
+      dataSource = ProductsRemoteDataSourceImpl(
+        httpClient: mockHttpClient,
+        logger: mockLogger,
+      );
     });
 
     group('getAllProducts', () {
@@ -41,20 +47,18 @@ void main() {
         },
       ];
 
-      final tProductsJson = <String, dynamic>{
-        'products': tProductsList,
-      };
+      final tProductsJson = tProductsList;
 
       test(
         'should return list of ProductModel when call is successful',
         () async {
           // arrange
           when(
-            mockHttpClient.get('/products'),
+            mockHttpClient.get<List<dynamic>>('/products'),
           ).thenAnswer((_) async => tProductsJson);
 
           // act
-          final result = await dataSource.getAllProducts();
+          final result = await dataSource.getProducts();
 
           // assert
           expect(result, isA<List<ProductModel>>());
@@ -62,19 +66,19 @@ void main() {
           expect(result[0].id, equals(1));
           expect(result[0].title, equals('Test Product'));
           expect(result[1].id, equals(2));
-          verify(mockHttpClient.get('/products'));
+          verify(mockHttpClient.get<List<dynamic>>('/products'));
         },
       );
 
       test('should throw NetworkException when http client throws', () async {
         // arrange
         when(
-          mockHttpClient.get('/products'),
+          mockHttpClient.get<List<dynamic>>('/products'),
         ).thenThrow(const NetworkException(message: 'Network error'));
 
         // act & assert
         expect(
-          () => dataSource.getAllProducts(),
+          () async => await dataSource.getProducts(),
           throwsA(isA<NetworkException>()),
         );
       });
