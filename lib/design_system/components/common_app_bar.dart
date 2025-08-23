@@ -31,8 +31,9 @@ class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
           fontWeight: FontWeight.w600,
         ),
       ),
+      surfaceTintColor: Colors.white,
       backgroundColor: backgroundColor ?? Colors.white,
-      elevation: 1,
+      elevation: 2,
       shadowColor: Colors.black.withValues(alpha: 0.1),
       leading:
           showBackButton
