@@ -63,7 +63,7 @@ void main() {
       await setupServiceLocator();
       
       // Second setup should not throw
-      expect(() async => await setupServiceLocator(), throwsA(isA<AssertionError>()));
+      expect(() async => await setupServiceLocator(), throwsA(isA<ArgumentError>()));
     });
 
     test('should allow retrieval of dependencies after setup', () async {
