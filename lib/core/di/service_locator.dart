@@ -11,8 +11,11 @@ Future<void> setupServiceLocator() async {
   // Register logger
   getIt.registerSingleton<LoggerInterface>(AppLogger(isDebugMode: kDebugMode));
 
-  // Register HTTP client
+  // Register HTTP client with base URL
   getIt.registerSingleton<HttpClient>(
-    DioClient(logger: getIt<LoggerInterface>()),
+    DioClient(
+      logger: getIt<LoggerInterface>(),
+      baseUrl: 'https://fakestoreapi.com',
+    ),
   );
 }
