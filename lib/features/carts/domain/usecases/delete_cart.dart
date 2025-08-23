@@ -1,4 +1,4 @@
-import '../repositories/carts_repository.dart';
+import 'package:holo_mobile/features/carts/domain/repositories/carts_repository.dart';
 
 class DeleteCart {
   final CartsRepository repository;

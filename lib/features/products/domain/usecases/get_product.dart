@@ -1,5 +1,5 @@
-import '../entities/product.dart';
-import '../repositories/products_repository.dart';
+import 'package:holo_mobile/features/products/domain/entities/product.dart';
+import 'package:holo_mobile/features/products/domain/repositories/products_repository.dart';
 
 class GetProduct {
   final ProductsRepository repository;

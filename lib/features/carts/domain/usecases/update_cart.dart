@@ -1,5 +1,5 @@
-import '../entities/cart.dart';
-import '../repositories/carts_repository.dart';
+import 'package:holo_mobile/features/carts/domain/entities/cart.dart';
+import 'package:holo_mobile/features/carts/domain/repositories/carts_repository.dart';
 
 class UpdateCart {
   final CartsRepository repository;

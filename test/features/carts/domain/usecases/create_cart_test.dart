@@ -23,17 +23,17 @@ void main() {
       // arrange
       const tUserId = 1;
       final tProducts = [
-        {'productId': 1, 'quantity': 4}
+        {'productId': 1, 'quantity': 4},
       ];
       final tCart = Cart(
         id: 1,
         userId: 1,
         date: DateTime.parse('2020-03-02T00:00:00.000Z'),
-        products: [
-          const CartProduct(productId: 1, quantity: 4),
-        ],
+        products: [const CartProduct(productId: 1, quantity: 4)],
       );
-      when(mockRepository.createCart(tUserId, tProducts)).thenAnswer((_) async => tCart);
+      when(
+        mockRepository.createCart(tUserId, tProducts),
+      ).thenAnswer((_) async => tCart);
 
       // act
       final result = await usecase(tUserId, tProducts);
