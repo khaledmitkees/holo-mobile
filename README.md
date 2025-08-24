@@ -183,3 +183,7 @@ The app uses the [Fake Store API](https://fakestoreapi.com/) for product data:
 ### Local Storage
 - Cart data persisted using SharedPreferences
 - Automatic data synchronization between local and remote state
+
+### **Future Improvements**
+- **User Authentication**: Login/logout functionality with secure storage
+- **Internationalization**: Multi-language support
