@@ -5,9 +5,12 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:async' as _i4;
 
+import 'package:holo_mobile/features/carts/data/datasources/cart_local_data_source.dart'
+    as _i5;
 import 'package:holo_mobile/features/carts/data/datasources/carts_remote_data_source.dart'
     as _i3;
 import 'package:holo_mobile/features/carts/data/models/cart_model.dart' as _i2;
+import 'package:holo_mobile/features/carts/domain/entities/cart.dart' as _i6;
 import 'package:mockito/mockito.dart' as _i1;
 
 // ignore_for_file: type=lint
@@ -84,6 +87,42 @@ class MockCartsRemoteDataSource extends _i1.Mock
   _i4.Future<void> deleteCart(int? id) =>
       (super.noSuchMethod(
             Invocation.method(#deleteCart, [id]),
+            returnValue: _i4.Future<void>.value(),
+            returnValueForMissingStub: _i4.Future<void>.value(),
+          )
+          as _i4.Future<void>);
+}
+
+/// A class which mocks [CartLocalDataSource].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockCartLocalDataSource extends _i1.Mock
+    implements _i5.CartLocalDataSource {
+  MockCartLocalDataSource() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i4.Future<void> saveCart(_i6.Cart? cart) =>
+      (super.noSuchMethod(
+            Invocation.method(#saveCart, [cart]),
+            returnValue: _i4.Future<void>.value(),
+            returnValueForMissingStub: _i4.Future<void>.value(),
+          )
+          as _i4.Future<void>);
+
+  @override
+  _i4.Future<_i6.Cart?> loadCart() =>
+      (super.noSuchMethod(
+            Invocation.method(#loadCart, []),
+            returnValue: _i4.Future<_i6.Cart?>.value(),
+          )
+          as _i4.Future<_i6.Cart?>);
+
+  @override
+  _i4.Future<void> clearCart() =>
+      (super.noSuchMethod(
+            Invocation.method(#clearCart, []),
             returnValue: _i4.Future<void>.value(),
             returnValueForMissingStub: _i4.Future<void>.value(),
           )
