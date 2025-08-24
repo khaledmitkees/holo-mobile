@@ -61,7 +61,9 @@ class CartsRepositoryImpl implements CartsRepository {
     try {
       final existingCart = await _cartLocalDataSource.loadCart();
       if (existingCart == null) {
-        throw NetworkException(message: 'No existing cart found to update');
+        final remoteCart = await _remoteDataSource.getCart(id);
+        await _cartLocalDataSource.saveCart(remoteCart);
+        return await updateCartItem(id, productId, quantity); // Retry with saved cart
       }
 
       final updatedProducts =
@@ -91,9 +93,15 @@ class CartsRepositoryImpl implements CartsRepository {
       }
 
       if (updatedProducts.isEmpty) {
-        await deleteCart(id);
-        await _cartLocalDataSource.clearCart();
-        throw NetworkException(message: 'Cart deleted due to empty products');
+        // Create empty cart instead of deleting
+        final emptyCart = Cart(
+          id: existingCart.id,
+          userId: existingCart.userId,
+          date: existingCart.date,
+          products: [],
+        );
+        await _cartLocalDataSource.saveCart(emptyCart);
+        return emptyCart;
       }
 
       final cart = await _remoteDataSource.updateCart(id, updatedProducts);
