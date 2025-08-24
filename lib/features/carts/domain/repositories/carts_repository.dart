@@ -1,8 +1,9 @@
-import '../entities/cart.dart';
+import 'package:holo_mobile/features/carts/domain/entities/cart.dart';
 
 abstract class CartsRepository {
   Future<Cart> getCart(int id);
-  Future<Cart> createCart(int userId, List<Map<String, dynamic>> products);
-  Future<Cart> updateCart(int id, List<Map<String, dynamic>> products);
+  Future<Cart> createCartWithItem(int productId, int quantity);
+  Future<Cart> updateCartItem(int id, int productId, int quantity);
   Future<void> deleteCart(int id);
+  Future<void> addToCart(int productId, int quantity);
 }

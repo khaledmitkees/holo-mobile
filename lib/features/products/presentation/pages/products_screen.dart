@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:holo_mobile/design_system/components/common_app_bar.dart';
 import 'package:holo_mobile/design_system/components/primary_button.dart';
+import 'package:holo_mobile/design_system/components/error_widget.dart'
+    as custom;
 import 'package:holo_mobile/features/products/presentation/bloc/products_bloc.dart';
 import 'package:holo_mobile/features/products/presentation/bloc/products_event.dart';
 import 'package:holo_mobile/features/products/presentation/bloc/products_state.dart';
+import 'package:holo_mobile/features/products/presentation/providers/product_details_provider.dart';
 import 'package:holo_mobile/features/products/presentation/widgets/product_card.dart';
-import 'package:holo_mobile/design_system/components/common_app_bar.dart';
-import 'package:holo_mobile/design_system/components/error_widget.dart'
-    as custom;
 
 class ProductsScreen extends StatefulWidget {
   const ProductsScreen({super.key});
@@ -91,7 +92,11 @@ class _ProductsScreenState extends State<ProductsScreen> {
             itemBuilder: (context, index) {
               return ProductCard(
                 product: state.products[index],
-                onTap: () => _onProductTapped(context, state.products[index]),
+                onTap:
+                    () => _navigateToProductDetails(
+                      context,
+                      state.products[index].id,
+                    ),
               );
             },
           ),
@@ -122,11 +127,12 @@ class _ProductsScreenState extends State<ProductsScreen> {
     );
   }
 
-  void _onProductTapped(BuildContext context, dynamic product) {
-    // TODO: Navigate to product details
-    ScaffoldMessenger.of(
-      context,
-    ).showSnackBar(SnackBar(content: Text('Product tapped: ${product.title}')));
+  void _navigateToProductDetails(BuildContext context, int productId) {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => ProductDetailsProvider(productId: productId),
+      ),
+    );
   }
 
   void _onViewCartPressed(BuildContext context) {

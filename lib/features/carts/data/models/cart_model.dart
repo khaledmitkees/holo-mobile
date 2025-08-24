@@ -36,4 +36,27 @@ class CartModel extends Cart {
               .toList(),
     };
   }
+
+  factory CartModel.fromEntity(Cart cart) {
+    return CartModel(
+      id: cart.id,
+      userId: cart.userId,
+      date: cart.date,
+      products: cart.products
+          .map((product) => CartProductModel(
+                productId: product.productId,
+                quantity: product.quantity,
+              ))
+          .toList(),
+    );
+  }
+
+  Cart toEntity() {
+    return Cart(
+      id: id,
+      userId: userId,
+      date: date,
+      products: products,
+    );
+  }
 }
