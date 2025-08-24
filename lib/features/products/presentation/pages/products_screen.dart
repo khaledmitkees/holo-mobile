@@ -136,9 +136,6 @@ class _ProductsScreenState extends State<ProductsScreen> {
   }
 
   void _onViewCartPressed(BuildContext context) {
-    // TODO: Navigate to cart screen
-    ScaffoldMessenger.of(
-      context,
-    ).showSnackBar(const SnackBar(content: Text('View Cart pressed')));
+    Navigator.of(context).pushNamed('/cart');
   }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'core/di/service_locator.dart';
 import 'features/products/presentation/providers/products_list_provider.dart';
+import 'features/carts/presentation/providers/cart_provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,7 +22,11 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.black),
         useMaterial3: true,
       ),
-      home: const ProductsListProvider(),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => const ProductsListProvider(),
+        '/cart': (context) => const CartProvider(),
+      },
     );
   }
 }

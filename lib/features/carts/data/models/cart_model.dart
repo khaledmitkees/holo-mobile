@@ -14,7 +14,9 @@ class CartModel extends Cart {
     return CartModel(
       id: json['id'] as int,
       userId: json['userId'] as int,
-      date: DateTime.parse(json['date'] as String),
+      date: json['date'] != null 
+          ? DateTime.parse(json['date'] as String)
+          : DateTime.now(),
       products:
           (json['products'] as List<dynamic>)
               .map(

@@ -8,7 +8,8 @@ class CartProductModel extends CartProduct {
 
   factory CartProductModel.fromJson(Map<String, dynamic> json) {
     return CartProductModel(
-      productId: json['productId'] as int,
+      // Handle both 'productId' and 'id' fields for API compatibility
+      productId: (json['productId'] ?? json['id']) as int,
       quantity: json['quantity'] as int,
     );
   }

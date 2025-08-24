@@ -25,12 +25,22 @@ class CartsRemoteDataSourceImpl implements CartsRemoteDataSource {
     int userId,
     List<Map<String, dynamic>> products,
   ) async {
+    final apiProducts =
+        products
+            .map(
+              (product) => {
+                'id': product['productId'],
+                'quantity': product['quantity'],
+              },
+            )
+            .toList();
+
     final response = await _httpClient.post(
       '/carts',
       data: {
         'userId': userId,
         'date': DateTime.now().toIso8601String(),
-        'products': products,
+        'products': apiProducts,
       },
     );
     return CartModel.fromJson(response);
@@ -41,12 +51,21 @@ class CartsRemoteDataSourceImpl implements CartsRemoteDataSource {
     int id,
     List<Map<String, dynamic>> products,
   ) async {
+    final apiProducts =
+        products
+            .map(
+              (product) => {
+                'id': product['productId'],
+                'quantity': product['quantity'],
+              },
+            )
+            .toList();
+
     final response = await _httpClient.put(
       '/carts/$id',
       data: {
         'userId': 1, // This would typically come from user session
-        'date': DateTime.now().toIso8601String(),
-        'products': products,
+        'products': apiProducts,
       },
     );
     return CartModel.fromJson(response);
