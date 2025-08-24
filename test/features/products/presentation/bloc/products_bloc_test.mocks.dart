@@ -8,7 +8,7 @@ import 'dart:async' as _i3;
 import 'package:holo_mobile/core/logging/logger_interface.dart' as _i5;
 import 'package:holo_mobile/features/products/domain/entities/product.dart'
     as _i4;
-import 'package:holo_mobile/features/products/domain/usecases/get_products.dart'
+import 'package:holo_mobile/features/products/domain/usecases/get_products_use_case.dart'
     as _i2;
 import 'package:mockito/mockito.dart' as _i1;
 
@@ -26,11 +26,12 @@ import 'package:mockito/mockito.dart' as _i1;
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
 
-/// A class which mocks [GetProducts].
+/// A class which mocks [GetProductsUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockGetProducts extends _i1.Mock implements _i2.GetProducts {
-  MockGetProducts() {
+class MockGetProductsUseCase extends _i1.Mock
+    implements _i2.GetProductsUseCase {
+  MockGetProductsUseCase() {
     _i1.throwOnMissingStub(this);
   }
 

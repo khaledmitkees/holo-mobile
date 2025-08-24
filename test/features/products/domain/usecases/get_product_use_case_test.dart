@@ -3,19 +3,19 @@ import 'package:mockito/mockito.dart';
 import 'package:mockito/annotations.dart';
 import 'package:holo_mobile/features/products/domain/entities/product.dart';
 import 'package:holo_mobile/features/products/domain/repositories/products_repository.dart';
-import 'package:holo_mobile/features/products/domain/usecases/get_product.dart';
+import 'package:holo_mobile/features/products/domain/usecases/get_product_use_case.dart';
 
-import 'get_product_test.mocks.dart';
+import 'get_product_use_case_test.mocks.dart';
 
 @GenerateMocks([ProductsRepository])
 void main() {
-  group('GetProduct', () {
+  group('GetProductUseCase', () {
     late MockProductsRepository mockRepository;
-    late GetProduct usecase;
+    late GetProductUseCase usecase;
 
     setUp(() {
       mockRepository = MockProductsRepository();
-      usecase = GetProduct(repository: mockRepository);
+      usecase = GetProductUseCase(repository: mockRepository);
     });
 
     test('should get product from the repository', () async {

@@ -4,19 +4,19 @@ import 'package:mockito/annotations.dart';
 import 'package:holo_mobile/features/carts/domain/entities/cart.dart';
 import 'package:holo_mobile/features/carts/domain/entities/cart_product.dart';
 import 'package:holo_mobile/features/carts/domain/repositories/carts_repository.dart';
-import 'package:holo_mobile/features/carts/domain/usecases/get_cart.dart';
+import 'package:holo_mobile/features/carts/domain/usecases/get_cart_use_case.dart';
 
 import 'get_cart_test.mocks.dart';
 
 @GenerateMocks([CartsRepository])
 void main() {
-  group('GetCart', () {
+  group('GetCartUseCase', () {
     late MockCartsRepository mockRepository;
-    late GetCart usecase;
+    late GetCartUseCase usecase;
 
     setUp(() {
       mockRepository = MockCartsRepository();
-      usecase = GetCart(repository: mockRepository);
+      usecase = GetCartUseCase(repository: mockRepository);
     });
 
     test('should get cart from the repository', () async {

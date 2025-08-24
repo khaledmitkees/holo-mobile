@@ -1,15 +1,15 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:holo_mobile/features/products/domain/usecases/get_products.dart';
+import 'package:holo_mobile/features/products/domain/usecases/get_products_use_case.dart';
 import 'package:holo_mobile/core/logging/logger_interface.dart';
 import 'products_event.dart';
 import 'products_state.dart';
 
 class ProductsBloc extends Bloc<ProductsEvent, ProductsState> {
-  final GetProducts _getProducts;
+  final GetProductsUseCase _getProducts;
   final LoggerInterface _logger;
 
   ProductsBloc({
-    required GetProducts getProducts,
+    required GetProductsUseCase getProducts,
     required LoggerInterface logger,
   }) : _getProducts = getProducts,
        _logger = logger,

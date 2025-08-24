@@ -48,30 +48,27 @@ class MockCartsRepository extends _i1.Mock implements _i3.CartsRepository {
           as _i4.Future<_i2.Cart>);
 
   @override
-  _i4.Future<_i2.Cart> createCart(
-    int? userId,
-    List<Map<String, dynamic>>? products,
-  ) =>
+  _i4.Future<_i2.Cart> createCartWithItem(int? productId, int? quantity) =>
       (super.noSuchMethod(
-            Invocation.method(#createCart, [userId, products]),
+            Invocation.method(#createCartWithItem, [productId, quantity]),
             returnValue: _i4.Future<_i2.Cart>.value(
               _FakeCart_0(
                 this,
-                Invocation.method(#createCart, [userId, products]),
+                Invocation.method(#createCartWithItem, [productId, quantity]),
               ),
             ),
           )
           as _i4.Future<_i2.Cart>);
 
   @override
-  _i4.Future<_i2.Cart> updateCart(
-    int? id,
-    List<Map<String, dynamic>>? products,
-  ) =>
+  _i4.Future<_i2.Cart> updateCartItem(int? id, int? productId, int? quantity) =>
       (super.noSuchMethod(
-            Invocation.method(#updateCart, [id, products]),
+            Invocation.method(#updateCartItem, [id, productId, quantity]),
             returnValue: _i4.Future<_i2.Cart>.value(
-              _FakeCart_0(this, Invocation.method(#updateCart, [id, products])),
+              _FakeCart_0(
+                this,
+                Invocation.method(#updateCartItem, [id, productId, quantity]),
+              ),
             ),
           )
           as _i4.Future<_i2.Cart>);
@@ -80,6 +77,15 @@ class MockCartsRepository extends _i1.Mock implements _i3.CartsRepository {
   _i4.Future<void> deleteCart(int? id) =>
       (super.noSuchMethod(
             Invocation.method(#deleteCart, [id]),
+            returnValue: _i4.Future<void>.value(),
+            returnValueForMissingStub: _i4.Future<void>.value(),
+          )
+          as _i4.Future<void>);
+
+  @override
+  _i4.Future<void> addToCart(int? productId, int? quantity) =>
+      (super.noSuchMethod(
+            Invocation.method(#addToCart, [productId, quantity]),
             returnValue: _i4.Future<void>.value(),
             returnValueForMissingStub: _i4.Future<void>.value(),
           )

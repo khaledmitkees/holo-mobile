@@ -5,21 +5,21 @@ import 'package:mockito/mockito.dart';
 import 'package:holo_mobile/core/logging/logger_interface.dart';
 import 'package:holo_mobile/core/network/network_exceptions.dart';
 import 'package:holo_mobile/features/products/domain/entities/product.dart';
-import 'package:holo_mobile/features/products/domain/usecases/get_products.dart';
+import 'package:holo_mobile/features/products/domain/usecases/get_products_use_case.dart';
 import 'package:holo_mobile/features/products/presentation/bloc/products_bloc.dart';
 import 'package:holo_mobile/features/products/presentation/bloc/products_event.dart';
 import 'package:holo_mobile/features/products/presentation/bloc/products_state.dart';
 
 import 'products_bloc_test.mocks.dart';
 
-@GenerateMocks([GetProducts, LoggerInterface])
+@GenerateMocks([GetProductsUseCase, LoggerInterface])
 void main() {
   late ProductsBloc productsBloc;
-  late MockGetProducts mockGetProducts;
+  late MockGetProductsUseCase mockGetProducts;
   late MockLoggerInterface mockLogger;
 
   setUp(() {
-    mockGetProducts = MockGetProducts();
+    mockGetProducts = MockGetProductsUseCase();
     mockLogger = MockLoggerInterface();
     productsBloc = ProductsBloc(
       getProducts: mockGetProducts,

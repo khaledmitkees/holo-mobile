@@ -1,12 +1,12 @@
 import 'package:holo_mobile/features/products/domain/entities/product.dart';
 import 'package:holo_mobile/features/products/domain/repositories/products_repository.dart';
 
-class GetAllProducts {
+class GetProductUseCase {
   final ProductsRepository repository;
 
-  GetAllProducts({required this.repository});
+  GetProductUseCase({required this.repository});
 
-  Future<List<Product>> call() async {
-    return await repository.getProducts();
+  Future<Product> call(int id) async {
+    return await repository.getProduct(id);
   }
 }
